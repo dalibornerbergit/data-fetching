@@ -1,5 +1,6 @@
 import { IBeer } from "@/models/IBeer";
-import Image from "next/image";
+import CustomCard from "./CustomCard";
+import { Col, Container, Row } from "react-bootstrap";
 
 type IProps = {
   data: IBeer[];
@@ -7,19 +8,19 @@ type IProps = {
 
 const BeerList: React.FC<IProps> = ({ data }) => {
   return (
-    <ul>
-      {data?.map((item) => (
-        <li key={item?.id}>
-          <Image
-            src={item.image_url}
-            width={30}
-            height={70}
-            alt="Picture of the author"
-          />
-          {item?.name}
-        </li>
-      ))}
-    </ul>
+    <Container>
+      <Row>
+        {data?.map((item) => (
+          <Col key={item.id} className="mb-3">
+            <CustomCard
+              imgUrl={item.image_url}
+              title={item.name}
+              description={item.description}
+            />
+          </Col>
+        ))}
+      </Row>
+    </Container>
   );
 };
 

@@ -1,4 +1,4 @@
-import { Button } from "react-bootstrap";
+import { Button, Stack } from "react-bootstrap";
 
 type IProps = {
   page: number;
@@ -9,7 +9,7 @@ type IProps = {
 
 const Pagination: React.FC<IProps> = ({ page, setPage, perPage, total }) => {
   return (
-    <>
+    <Stack gap={2} direction="horizontal">
       <Button
         className="btn"
         disabled={page <= 1}
@@ -17,7 +17,6 @@ const Pagination: React.FC<IProps> = ({ page, setPage, perPage, total }) => {
       >
         Prev
       </Button>
-
       <Button
         className="btn"
         disabled={page >= total / perPage}
@@ -25,7 +24,8 @@ const Pagination: React.FC<IProps> = ({ page, setPage, perPage, total }) => {
       >
         Next
       </Button>
-    </>
+      Page: {page}
+    </Stack>
   );
 };
 

@@ -14,11 +14,17 @@ const Swr = () => {
 
   const { data, error, isLoading } = useSWR(
     `${beerUrl}?page=${page}&per_page=${perPage}`,
-    fetcher
+    fetcher,
+    {
+      revalidateIfStale: true,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: true,
+      // revalidateOnMount: true,
+    }
   );
 
   if (error) return <div>Failed to load</div>;
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div className="text-center">Loading...</div>;
 
   return (
     <div className="container">
